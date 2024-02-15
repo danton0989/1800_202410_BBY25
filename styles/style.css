@@ -1,1 +1,14 @@
+/*
+<!------------------------------>
+<!-- NAVBAR -->
+<!------------------------------>
+*/
 
+.navbar-brand{
+    font-family: "Protest Guerrilla", sans-serif; /*change the font name for what you have*/
+    font-size: 2.25rem;
+}
+
+.navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
+    color: #00241B; /* Dark green for brand name & nav links for visibility */
+}
