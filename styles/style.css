@@ -12,3 +12,78 @@
 .navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
     color: #00241B; /* Dark green for brand name & nav links for visibility */
 }
+
+/* 
+<!------------------------------>
+<!-- NAVIGATION TABS -->
+<!------------------------------> 
+*/
+a {
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+
+/*
+<!------------------------------>
+<!-- CREATE WORKOUT -->
+<!------------------------------>
+*/
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*
+<!------------------------------>
+<!-- WORKOUT CARDS -->
+<!------------------------------>
+*/
+
+.card {
+    width: 400px !important;
+}
+
+.card > img {
+    height: 150px;
+}
+
+.card-body {
+    /* margin: 0; */
+    padding: 0;
+}
+
+.card-title {
+    margin: 0;
+    padding: 0px 0px 8px 8px;
+    font-size: 14pt;
+}
+
+
+/*
+<!------------------------------>
+<!-- EXERCISE CARDS -->
+<!------------------------------>
+*/
+
+.card-mb-3 {
+    max-width: 400px !important;
+    /* height: 100%; */
+}
+
+.img-fluid {
+    height: 100px;
+}
+
+.card-text {
+    margin: 0;
+    padding: 0px 0px 8px 8px;
+    font-size: 10pt;
+}
