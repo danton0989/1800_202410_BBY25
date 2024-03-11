@@ -13,8 +13,3 @@ function logout() {
         // An error happened.
       });
 }
-
-function sayHello() {
-    //do something
-}
-//sayHello();    //invoke function
