@@ -54,7 +54,7 @@
 
     <!-- the body of your page goes here -->
 
-    <form class="container" onsubmit="return writeToHistory()">
+    <form class="container" onsubmit="return writeToHistory('exercises')">
         <h1 id="workoutName">Workout</h1>
         <div class="container">
             <div id="exercises-go-here" class="row row-cols-auto">
@@ -67,16 +67,16 @@
     <!-- Templates for general use, not displayed -->
     <template id="exerciseCardTemplate">
         <div class="card py-2 mx-2" style="width: 100%">
-            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-length">placeholder</p>
-                <br />
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a class="btn btn-primary card-href">Read more ...</a>
+                <label for="set1" class="set1label">Set 1 Reps:</label>
+                <input type="number" class="set1" name="quantity" min="0"> <br>
+                <label for="set2" class="set2label">Set 2 Reps:</label>
+                <input type="number" class="set2" name="quantity" min="0"> <br>
+                <label for="set3" class="set3label">Set 3 Reps:</label>
+                <input type="number" class="set3" name="quantity" min="0"> <br>
+                <a class="btn btn-primary card-href">Done</a>
             </div>
         </div>
     </template>
@@ -90,7 +90,6 @@
     <script src="./scripts/firebaseAPI_TEAM99.js"></script>
     <script src="./scripts/loginCheck.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/homepage.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/workingOut.js"></script>
     <script src="./scripts/writeToHistory.js"></script>

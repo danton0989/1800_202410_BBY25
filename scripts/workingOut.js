@@ -20,6 +20,7 @@ function displayExercisesDynamically(collection) {
     db.collection("workouts").doc(ID).collection(collection).get()   //the collection called "hikes"
         .then(allExercises => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
+            var i = 1
             allExercises.forEach(doc => { //iterate thru each doc
                 var title = doc.data().name;       // get value of the "name" key
                 // var details = doc.data().details;  // get value of the "details" key
@@ -36,6 +37,12 @@ function displayExercisesDynamically(collection) {
                 // newcard.querySelector('a').href = "eachHike.html?docID=" + docID;
 
                 //Optional: give unique ids to all elements for future use
+                newcard.querySelector('.set1label').setAttribute("for", "exercise" + i + "set1");
+                newcard.querySelector('.set1').setAttribute("id", "exercise" + i + "set1");
+                newcard.querySelector('.set2label').setAttribute("for", "exercise" + i + "set2");
+                newcard.querySelector('.set2').setAttribute("id", "exercise" + i + "set2");
+                newcard.querySelector('.set3label').setAttribute("for", "exercise" + i + "set3");
+                newcard.querySelector('.set3').setAttribute("id", "exercise" + i + "set3");
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
                 // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
@@ -43,7 +50,7 @@ function displayExercisesDynamically(collection) {
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
-                //i++;   //Optional: iterate variable to serve as unique ID
+                i++;   //Optional: iterate variable to serve as unique ID
             })
         })
 
