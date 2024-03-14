@@ -31,21 +31,23 @@ function writeToHistory(collection) {
                     allExercises.forEach(doc => { //iterate thru each doc
                         let title = "exercise" + i;
                         let field = allExercises.docs[length - i].data().name;
-                        workout.docs[workout.docs.length - 1].ref.update({ [title]: field});
+                        workout.docs[workout.docs.length - 1].ref.update({ [title]: field });
                         let name = title + "set1";
                         let rep = document.getElementById("exercise" + i + "set1");;
-                        workout.docs[workout.docs.length - 1].ref.update({ [name]: rep.value});
+                        workout.docs[workout.docs.length - 1].ref.update({ [name]: rep.value });
                         name = title + "set2";
                         rep = document.getElementById("exercise" + i + "set2");;
-                        workout.docs[workout.docs.length - 1].ref.update({ [name]: rep.value});
+                        workout.docs[workout.docs.length - 1].ref.update({ [name]: rep.value });
                         name = title + "set3";
                         rep = document.getElementById("exercise" + i + "set3");;
-                        workout.docs[workout.docs.length - 1].ref.update({ [name]: rep.value});
+                        workout.docs[workout.docs.length - 1].ref.update({ [name]: rep.value });
 
                         i++;   //Optional: iterate variable to serve as unique ID
                     })
                 })
         })
+
+    console.log($('#forum').load('./text/finished_workout.html'));
 
     return false;
 }

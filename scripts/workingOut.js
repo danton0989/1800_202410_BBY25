@@ -57,3 +57,7 @@ function displayExercisesDynamically(collection) {
 }
 
 displayExercisesDynamically("exercises");  //input param is the name of the collection
+
+function workoutDone() {
+    location.replace("./workout_favorite.html");
+}
