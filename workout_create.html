@@ -112,11 +112,13 @@
     <!-- https://getbootstrap.com/docs/5.2/components/buttons/ -->
     <!------------------------------>   
 
-    <form class="form-floating">
-      <input type="text" class="form-control" id="floatingInputValue" placeholder="new workout name" value="New Workout 1">
-      <label for="floatingInputValue">Enter new workout name</label>
-      <div class="center"><button type="button" class="btn btn-success">Create</button></div>
-    </form>
+    <div class="form-workout-create">
+      <form class="form-floating">
+        <input type="text" class="form-control" id="formNewWorkoutName" placeholder="new workout name" value="New Workout 1">
+        <label for="floatingInputValue">Enter new workout name</label>
+        <div class="center"><button type="button" class="btn btn-success" onclick="createWorkout()">Create</button></div>
+      </form>
+    </div>
 
     <!-- <div class="card" style="width: 18rem;">
       <img src="./images/hike1.jpg" class="card-img-top" alt="...">
@@ -181,6 +183,7 @@
     <script src="./scripts/loginCheck.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/workoutFunctions.js"></script>
 
 </body>
 
