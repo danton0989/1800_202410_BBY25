@@ -109,15 +109,43 @@
     <!-- WORKOUT CARDS -->
     <!-- https://getbootstrap.com/docs/5.3/components/card/ -->
     <!------------------------------>   
-
-    <div class="card" style="width: 18rem;">
-      <img src="./images/hike1.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-      <h5 class="card-title">Favorite Card title<span id="workoutName-goes-here"></span></h5>
-      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    <div class="container"> 
+      <div class="container">
+      <div id="workouts-go-here" class="row row-cols-auto">
+        <template id="workoutCardTemplate">
+          <a href="workingOut.html">
+            <div class="workout-card" style="width: 18rem;">
+              <img src="" class="workout-image" alt="...">
+              <div class="workout-body">
+              <h5 class="workout-title">Favorite Card title<span id="workoutName-goes-here"></span><br>Start Workout</h5>
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </a>
+        </template>
       </div>
-    </div>
+   </div>
+   </div>
+
+                    <!-- Templates for general use, not displayed
+                    <template id="hikeCardTemplate">
+                      <div class="card py-2 mx-2" style="width: 18rem">
+                          <img class="card-image card-img-top" src=" ..." alt="..." />
+                          <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-length">placeholder</p>
+                              <br />
+                              <p class="card-text">
+                                  Some quick example text to build on the card title and make up the
+                                  bulk of the card's content.
+                              </p>
+                              <a class="btn btn-primary card-href">Read more ...</a>
+                          </div>
+                      </div>
+                  </template> -->
+  
+
 
     <!-- <div class="card" style="width: 18rem;">
       <img src="./images/hike1.jpg" class="card-img-top" alt="...">
@@ -128,14 +156,6 @@
       </div>
     </div> -->
 
-    <!-- <div class="card" style="width: 18rem;">
-      <img src="./images/hike1.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div> -->
       
     <!-- <div class="px-4 py-5 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="./images/FitnessSymbol.png" alt="" width="72" height="57">
