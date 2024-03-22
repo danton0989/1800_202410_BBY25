@@ -61,3 +61,4 @@ displayExercisesDynamically("exercises");  //input param is the name of the coll
 function workoutDone() {
     location.replace("./workout_favorite.html");
 }
+
