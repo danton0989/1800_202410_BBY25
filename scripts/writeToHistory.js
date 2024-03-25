@@ -18,6 +18,7 @@ function writeToHistory(collection) {
     workout: workoutName,
     start_time: firebase.firestore.FieldValue.serverTimestamp(),
     end_time: firebase.firestore.FieldValue.serverTimestamp(), //current system time
+    counter: 0,
   });
 
   history
@@ -60,16 +61,15 @@ function writeToHistory(collection) {
 
             i++; //Optional: iterate variable to serve as unique ID
             let workoutCount = document
-              .getElementById("myBtn")
-              .addEventListener("click", function () {
+              .getElementById("exercise" + i);
                 workout.docs[workout.docs.length - 1].ref.update({
-                  [name]: workoutCount.value.increment(1),
+                  [title]: workoutCount.value.increment(1),
                 });
                 localStorage.setItem("count", workoutCount.value);
               });
           });
         });
-    });
+
 
   console.log($("#forum").load("./text/finished_workout.html"));
 
@@ -77,7 +77,7 @@ function writeToHistory(collection) {
 }
 
 // Wait for the document to load before executing JavaScript
-document.addEventListener("DOMContentLoaded", function () {
+function setCounterToZero() {
   // Get the count element
   const countElement = document.getElementById("counter");
   // Get the increment amount from localStorage, default to 0 if not set
