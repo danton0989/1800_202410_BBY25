@@ -3,10 +3,10 @@ function writeToHistory(collection) {
   //define a variable for the collection you want to create in Firestore to populate data
   var history = db.collection("users").doc(user.uid).collection("history");
 
-  let ID = "workout1";
+  let ID = "initial";
   console.log(ID);
 
-  db.collection("workouts")
+  db.collection("users").doc(user.uid).collection("workouts")
     .doc(ID)
     .get()
     .then((doc) => {
@@ -27,18 +27,36 @@ function writeToHistory(collection) {
     .then((workout) => {
       //workout.docs[workout.docs.length - 1].ref.update({ "exercise1": "squat" });
 
-      db.collection("workouts")
+      db.collection("users").doc(user.uid).collection("workouts")
         .doc(ID)
         .collection(collection)
-        .get() //the collection called "hikes"
+        .get()
         .then((allExercises) => {
           //var i = 1;  //Optional: if you want to have a unique ID for each hike
           var i = 1;
           let length = allExercises.docs.length;
+          var exercisesRef = workout.docs[workout.docs.length - 1].ref.collection("exercises");
 
           allExercises.forEach((doc) => {
             //iterate thru each doc
-            let title = "exercise" + i;
+            let exerciseID = doc.data().id;
+            let rep1 = document.getElementById("exercise" + i + "set1");
+            let rep2 = document.getElementById("exercise" + i + "set2");
+            let rep3 = document.getElementById("exercise" + i + "set3");
+            let weight = document.getElementById("exercise" + i + "weight");
+            console.log(i);
+            console.log(rep1.value);
+            console.log(rep2.value);
+            console.log(rep3.value);
+            exercisesRef.add({
+              id: exerciseID,
+              set1: rep1.value,
+              set2: rep2.value,
+              set3: rep3.value,
+              weight: weight.value
+            });
+
+            /* let title = "exercise" + i;
             let field = allExercises.docs[length - i].data().name;
             workout.docs[workout.docs.length - 1].ref.update({
               [title]: field,
@@ -57,26 +75,26 @@ function writeToHistory(collection) {
             rep = document.getElementById("exercise" + i + "set3");
             workout.docs[workout.docs.length - 1].ref.update({
               [name]: rep.value,
-            });
+            }); */
 
             i++; //Optional: iterate variable to serve as unique ID
-            let workoutCount = document
+            /* let workoutCount = document
               .getElementById("exercise" + i);
-                workout.docs[workout.docs.length - 1].ref.update({
-                  [title]: workoutCount.value.increment(1),
-                });
-                localStorage.setItem("count", workoutCount.value);
-              });
+            workout.docs[workout.docs.length - 1].ref.update({
+              [title]: workoutCount.value.increment(1),
+            });
+            localStorage.setItem("count", workoutCount.value); */
           });
         });
+    });
 
 
-  console.log($("#forum").load("./text/finished_workout.html"));
+  //console.log($("#forum").load("./text/finished_workout.html"));
 
   return false;
 }
 
-// Wait for the document to load before executing JavaScript
+/* // Wait for the document to load before executing JavaScript
 function setCounterToZero() {
   // Get the count element
   const countElement = document.getElementById("counter");
@@ -125,3 +143,4 @@ function setCounterToZero() {
   // Call updateTimer to start the countdown immediately
   updateTimer();
 });
+ */
