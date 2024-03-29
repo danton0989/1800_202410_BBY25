@@ -71,7 +71,7 @@ function writeExercises(u) {
         details: "The bench press is a compound exercise that targets the muscles of the upper body. It involves lying on a bench and pressing weight upward using either a barbell or a pair of dumbbells. During a bench press, you lower the weight down to chest level and then press upwards while extending your arms.",
         prevSet1: 0,
         prevSet2: 0,
-        prevSet3: 0,
+        prevSet3: 0,    
         prevWeight: 0,
         counter: 0
     });
@@ -125,17 +125,14 @@ function writeWorkouts(u) {
     });
     var workout = db.collection("users").doc(u.uid).collection("workouts").doc("initial");
     var workoutExercises = workout.collection("exercises");
-    db.collection("users").doc(u.uid).collection("exercises").get()   //the collection called "hikes"
+    db.collection("users").doc(u.uid).collection("exercises").get()
         .then(allExercises => {
-            //var i = 1;  //Optional: if you want to have a unique ID for each hike
-            var i = 1;
+            //var i = 1;  //Optional
             allExercises.forEach(doc => { //iterate thru each doc
-                let title = "exercise" + i;
                 let field = doc.id;
                 workoutExercises.add({
-                    [title]: field,
+                    id: field,
                 });
-                i++;
             });
         });
 }
