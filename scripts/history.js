@@ -30,8 +30,6 @@ function displayHistoryDynamically(collection) {
             historyCard.querySelector(".start_time").innerHTML = await `Start Time: ${start_time}`;
             historyCard.querySelector(".end_time").innerHTML = await `End Time: ${end_time}`;
             historyCard.querySelector('.exercises').setAttribute("id", "exercises-go-here" + a);
-            console.log("a" + a)
-            console.log("log:" + j);
             /* await document
               .getElementById(collection + "-go-here")
               .appendChild(historyCard); */
@@ -56,8 +54,6 @@ function displayHistoryDynamically(collection) {
 displayHistoryDynamically("history"); //input param is the name of the collection
 
 function appending(e, i) {
-  // console.log(i);
-  console.log(document);
   document.getElementById("exercises-go-here" + i).appendChild(e);
 }
 
@@ -75,11 +71,9 @@ async function appendingHistory(h, callback) {
 
 async function testFunction(h, doc, user, callback) {
   let exerciseList = h.doc(doc.id).collection("exercises");
-  console.log("testfunc" + j);
   await exerciseList.get()
     .then((exercises) => {
       exercises.forEach(async (exercise) => {
-        console.log(j);
         var exerciseCard = exerciseTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
         let exerciseName = exercise.data().name;
         // happens after all the other code rn gotta fix ***
