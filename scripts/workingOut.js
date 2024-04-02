@@ -4,29 +4,19 @@
 function displayExercisesDynamically(collection) {
     firebase.auth().onAuthStateChanged((user) => {
         let params = new URL(window.location.href); //get URL of search bar
-        // let ID = params.searchParams.get("docID"); //get value for key "id"
-        let ID = "workout1"
-
+        let ID = params.searchParams.get("docID"); //get value for key "id"
 
         let cardTemplate = document.getElementById("exerciseCardTemplate"); // Retrieve the HTML element with the ID "exerciseCardTemplate" and store it in the cardTemplate variable. 
 
-        /* db.collection("workouts").doc(ID).get()
+        db.collection("users").doc(user.uid).collection("workouts").doc(ID).get()
             .then(doc => {
-                // only populate title
-                workoutName = doc.data().name;
-                document.getElementById("workoutName").innerHTML = workoutName;
-            }) */
-
-        db.collection("users").doc(user.uid).collection("workouts").doc("initial").get()
-            .then(doc => {
-                // only populate title
+                // populate title for workout
                 workoutName = doc.data().name;
                 document.getElementById("workoutName").innerHTML = workoutName;
             })
 
         // dynamically displays all the exercises
-        // db.collection("workouts").doc(ID).collection(collection).get()   //the collection called "hikes"
-        db.collection("users").doc(user.uid).collection("workouts").doc("initial").collection(collection).get()
+        db.collection("users").doc(user.uid).collection("workouts").doc(ID).collection(collection).get()
             .then(allExercises => {
                 var i = 1;
                 allExercises.forEach(doc => { //iterate thru each doc
@@ -49,13 +39,12 @@ function displayExercisesDynamically(collection) {
                             newcard.querySelector('.set3').setAttribute("id", "exercise" + i + "set3");
                             newcard.querySelector('.weight').setAttribute("id", "exercise" + i + "weight");
                             
-                            //attach to gallery, Example: "hikes-go-here"
+                            //attach to gallery, "exercises-go-here"
                             document.getElementById(collection + "-go-here").appendChild(newcard);
 
                             i++;
                         })
 
-                    //i++;   //Optional: iterate variable to serve as unique ID
                 })
             })
     })

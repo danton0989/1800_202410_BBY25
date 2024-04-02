@@ -1,3 +1,6 @@
+const startTime = new Date();
+console.log(startTime)
+ 
 function writeToHistory(collection) {
   var user = firebase.auth().currentUser;
   //define a variable for the collection you want to create in Firestore to populate data
@@ -16,8 +19,8 @@ function writeToHistory(collection) {
 
   history.add({
     workout: workoutName,
-    start_time: firebase.firestore.FieldValue.serverTimestamp(),
-    end_time: firebase.firestore.FieldValue.serverTimestamp(), //current system time
+    start_time: startTime,
+    end_time: new Date(), //current system time
     counter: 0,
   });
 
