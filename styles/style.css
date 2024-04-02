@@ -3,12 +3,12 @@
 <!-- NAVBAR -->
 <!------------------------------>
 */
-.navbar-brand{
+.navbar-brand {
     font-family: "Protest Guerrilla", sans-serif; /*change the font name for what you have*/
     font-size: 2.25rem;
 }
 
-.navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-brand .navbar-light .navbar-nav .nav-link {
     color: #00241B; /* Dark green for brand name & nav links for visibility */
 }
 
@@ -47,6 +47,7 @@ a:hover {
 */
 .card {
     width: 400px !important;
+    max-width: 400px !important;
 }
 
 .card > img {
@@ -74,7 +75,8 @@ a:hover {
 <!-- EXERCISE CARDS -->
 <!------------------------------>
 */
-.card-mb-3 {
+.exercise-card .mb-3 {
+    width: 400px !important;
     max-width: 400px !important;
     /* height: 100%; */
 }
@@ -89,6 +91,17 @@ a:hover {
     font-size: 10pt;
 }
 
+.exercise-card {
+    border: 1px;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 5px;
+}
+
+.exercise-image {
+    width: 100%;
+    height: 150px;
+}
 
 /*
 <!------------------------------>
@@ -97,4 +110,20 @@ a:hover {
 */
 .form-workout-create {
     width: 18rem;
+    /* width: 400px !important; */
+    /* max-width: 400px !important; */
 }
+
+.form-control {
+    /* width: 90%; */
+}
+
+.enabled {
+    background-color: #00241B;
+}
+
+.disabled {
+    background-color: grey;
+    color: white;
+}
+

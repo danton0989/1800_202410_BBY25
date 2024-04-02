@@ -85,6 +85,7 @@ function displayWorkoutName() {
 // displayWorkoutName();        //calling the function
 
 
+/*
 function displayWorkoutCard() {
   firebase.auth().onAuthStateChanged(function (user) {
 
@@ -126,26 +127,29 @@ function displayWorkoutCard() {
 }
 
 displayWorkoutCard();        //calling the function
+*/
 
 
 function displayExerciseCard() {
   firebase.auth().onAuthStateChanged(function (user) {
 
-    let cardTemplate = document.getElementById("exerciseCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
+    let exerciseCardTemplate = document.getElementById("exerciseCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
 
     // db.collection("users").doc(user.uid).collection("workouts").get()
-    db.collection("exerciseTemplates").get()
+    db.collection("exercisesTemplates").get()
       .then(allExercises => {
         allExercises.forEach(doc => {
           // var workoutName = doc.data().name;
           // var workout = doc.data();
           var title = doc.data().name;       // get value of the "name" key
+          console.log(title);
           // var details = doc.data().details;  // get value of the "details" key
           // var workoutImage = doc.data().imageName;    //get unique ID to each hike to be used for fetching right image
           // var hikeLength = doc.data().length; //gets the length field
           var docID = doc.id;
+          console.log(docID);
           
-          let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+          let newcard = exerciseCardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
 
           console.log(doc.data());  //.data() returns data object
@@ -202,7 +206,8 @@ function createWorkout() {
 
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
-      window.location.assign("workout_favorite.html");       //re-direct to workout_favorite after creating a new workout
+      // window.location.assign("workout_favorite.html");       //re-direct to workout_favorite after creating a new workout
+      displayExerciseCard();
     })
 
     .catch(function (error) {
