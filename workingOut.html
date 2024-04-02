@@ -62,8 +62,16 @@
 
             </div>
         </div>
-        <button type="submit">Finish</button>
+        <button type="button" onclick="writeToHistory('exercises')">Finish</button>
     </form>
+    
+    <div class="modal" id="modal">
+        <div class="modal-inner">
+            <h1>Goodjob!</h1>
+            <h5>Your workout has been saved.</h1>
+            <button type="button" onclick="finalizeWorkout()">continue</button>
+        </div>
+    </div>
 
     <!-- Templates for general use, not displayed -->
     <template id="exerciseCardTemplate">

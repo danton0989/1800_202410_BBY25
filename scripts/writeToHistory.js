@@ -1,17 +1,18 @@
 const startTime = new Date();
-//console.log(startTime);
 let now = new Date().getTime();
-console.log(now);
- 
-function writeToHistory(collection) {
-  var user = firebase.auth().currentUser;
+const contBtn = document.getElementById("continue");
+let params = new URL(window.location.href); //get URL of search bar
+let ID = params.searchParams.get("docID"); //get value for key "id"
+
+async function writeToHistory(collection) {
+  // display modal to show user has finished workout
+  const modal = document.getElementById("modal");
+  modal.classList.add("open");
+  var user = await firebase.auth().currentUser;
   //define a variable for the collection you want to create in Firestore to populate data
-  var history = db.collection("users").doc(user.uid).collection("history");
+  var history = await db.collection("users").doc(user.uid).collection("history");
 
-  let ID = "initial";
-  console.log(ID);
-
-  db.collection("users").doc(user.uid).collection("workouts")
+  await db.collection("users").doc(user.uid).collection("workouts")
     .doc(ID)
     .get()
     .then((doc) => {
@@ -19,46 +20,41 @@ function writeToHistory(collection) {
       var workoutName = doc.data().name;
     });
 
-  history.add({
+  await history.add({
     workout: workoutName,
     start_time: startTime,
     end_time: new Date(), //current system time
     counter: 0,
   });
 
-  history
+  await history
     .orderBy("start_time")
     .get()
-    .then((workout) => {
+    .then(async (workout) => {
       //workout.docs[workout.docs.length - 1].ref.update({ "exercise1": "squat" });
 
-      db.collection("users").doc(user.uid).collection("workouts")
+      await db.collection("users").doc(user.uid).collection("workouts")
         .doc(ID)
         .collection(collection)
         .get()
-        .then((allExercises) => {
+        .then(async (allExercises) => {
           //var i = 1;  //Optional: if you want to have a unique ID for each hike
           var i = 1;
           let length = allExercises.docs.length;
-          var exercisesRef = workout.docs[workout.docs.length - 1].ref.collection("exercises");
+          var exercisesRef = await workout.docs[workout.docs.length - 1].ref.collection("exercises");
 
-          allExercises.forEach(async (doc) => {
+          await allExercises.forEach(async (doc) => {
             //iterate thru each doc
             let exerciseID = doc.data().id;
             let exerciseName;
             await db.collection("users").doc(user.uid).collection("exercises").doc(exerciseID).get()
               .then(exercise => {
                 exerciseName = exercise.data().name;
-                console.log("Exercise name: " + exerciseName);
               });
             let rep1 = document.getElementById("exercise" + i + "set1");
             let rep2 = document.getElementById("exercise" + i + "set2");
             let rep3 = document.getElementById("exercise" + i + "set3");
             let weight = document.getElementById("exercise" + i + "weight");
-            console.log(i);
-            console.log(rep1.value);
-            console.log(rep2.value);
-            console.log(rep3.value);
             exercisesRef.add({
               id: exerciseID,
               name: exerciseName,
@@ -67,82 +63,37 @@ function writeToHistory(collection) {
               set3: rep3.value,
               weight: weight.value
             });
-
-            /* let title = "exercise" + i;
-            let field = allExercises.docs[length - i].data().name;
-            workout.docs[workout.docs.length - 1].ref.update({
-              [title]: field,
-            });
-            let name = title + "set1";
-            let rep = document.getElementById("exercise" + i + "set1");
-            workout.docs[workout.docs.length - 1].ref.update({
-              [name]: rep.value,
-            });
-            name = title + "set2";
-            rep = document.getElementById("exercise" + i + "set2");
-            workout.docs[workout.docs.length - 1].ref.update({
-              [name]: rep.value,
-            });
-            name = title + "set3";
-            rep = document.getElementById("exercise" + i + "set3");
-            workout.docs[workout.docs.length - 1].ref.update({
-              [name]: rep.value,
-            }); */
-
-            i++; //Optional: iterate variable to serve as unique ID
-            /* let workoutCount = document
-              .getElementById("exercise" + i);
-            workout.docs[workout.docs.length - 1].ref.update({
-              [title]: workoutCount.value.increment(1),
-            });
-            localStorage.setItem("count", workoutCount.value); */
+            i++;
           });
         });
     });
 
-
-  //console.log($("#forum").load("./text/finished_workout.html"));
-
   return false;
 }
 
+function finalizeWorkout() {
+  window.location.assign("workout_favorite.html");
+}
+
 function counterTimer() {
+  // Update the timer every 1 second
   setInterval(function () {
     // Find the distance between now and the count down date
     let time = Date.now() - startTime;
-    //console.log(time);
+    // Time calculations for hours, minutes and seconds
     let hours = Math.floor(
       (time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
     let minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((time % (1000 * 60)) / 1000);
-
+    // Output the timer result in an element with id="timer"
     document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-    console.log(hours + "h " + minutes + "m " + seconds + "s ");
-
-    /* // Time calculations for days, hours, minutes and seconds
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Output the result in an element with id="timer"
-    document.getElementById("timer").innerHTML =
-      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-    // If the count down is over, write some text and set countElement to 0
-    if (distance <= 0) {
-      clearInterval(x);
-      count = 0;
-    } */
   }, 1000);
 }
 
 counterTimer();
 
-// Wait for the document to load before executing JavaScript
+/* // Wait for the document to load before executing JavaScript
 function setCounterToZero() {
   // Get the count element
   const countElement = document.getElementById("counter");
@@ -191,3 +142,4 @@ function setCounterToZero() {
   // Call updateTimer to start the countdown immediately
   updateTimer();
 };
+ */
