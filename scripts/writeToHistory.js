@@ -1,5 +1,7 @@
 const startTime = new Date();
-console.log(startTime)
+//console.log(startTime);
+let now = new Date().getTime();
+console.log(now);
  
 function writeToHistory(collection) {
   var user = firebase.auth().currentUser;
@@ -104,7 +106,43 @@ function writeToHistory(collection) {
   return false;
 }
 
-/* // Wait for the document to load before executing JavaScript
+function counterTimer() {
+  setInterval(function () {
+    // Find the distance between now and the count down date
+    let time = Date.now() - startTime;
+    //console.log(time);
+    let hours = Math.floor(
+      (time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    let minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+    console.log(hours + "h " + minutes + "m " + seconds + "s ");
+
+    /* // Time calculations for days, hours, minutes and seconds
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="timer"
+    document.getElementById("timer").innerHTML =
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+    // If the count down is over, write some text and set countElement to 0
+    if (distance <= 0) {
+      clearInterval(x);
+      count = 0;
+    } */
+  }, 1000);
+}
+
+counterTimer();
+
+// Wait for the document to load before executing JavaScript
 function setCounterToZero() {
   // Get the count element
   const countElement = document.getElementById("counter");
@@ -152,5 +190,4 @@ function setCounterToZero() {
 
   // Call updateTimer to start the countdown immediately
   updateTimer();
-});
- */
+};
