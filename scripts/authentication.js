@@ -24,13 +24,14 @@ var uiConfig = {
                     console.log("Error adding new user: " + error);
                 });
                 writeExercises(user);
-                writeWorkouts(user);
-                db.collection("users").doc(user.uid).collection("history").doc('initial').set({         //write to firestore. We are using the UID for the ID in users collection
-                    start_time: firebase.firestore.FieldValue.serverTimestamp(),
-                }).then(function () {
-                    console.log("New user added to firestore");
-                    window.location.assign("homepage.html");       //re-direct to main.html after signup
-                });
+                writeWorkouts(user)
+                    .then(function () {
+                        console.log("New user added to firestore");
+                        window.location.assign("homepage.html");       //re-direct to main.html after signup
+                    });
+                //db.collection("users").doc(user.uid).collection("history").doc('initial').set({         //write to firestore. We are using the UID for the ID in users collection
+                //    start_time: firebase.firestore.FieldValue.serverTimestamp(),
+                //})
             } else {
                 return true;
             }
@@ -71,7 +72,7 @@ function writeExercises(u) {
         details: "The bench press is a compound exercise that targets the muscles of the upper body. It involves lying on a bench and pressing weight upward using either a barbell or a pair of dumbbells. During a bench press, you lower the weight down to chest level and then press upwards while extending your arms.",
         prevSet1: 0,
         prevSet2: 0,
-        prevSet3: 0,    
+        prevSet3: 0,
         prevWeight: 0,
         counter: 0
     });

@@ -8,7 +8,6 @@ function displayChart(collection) {
       .then((allExercises) => {
         allExercises.forEach((exerciseDoc) => { 
             let exerciseID = exerciseDoc.id;
-            console.log(exerciseID);
             document.getElementById(i).setAttribute("onclick", "window.location='./suggestion.html?docID=" + exerciseID + "'");
             i++;
         });
