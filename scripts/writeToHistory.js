@@ -37,9 +37,15 @@ function writeToHistory(collection) {
           let length = allExercises.docs.length;
           var exercisesRef = workout.docs[workout.docs.length - 1].ref.collection("exercises");
 
-          allExercises.forEach((doc) => {
+          allExercises.forEach(async (doc) => {
             //iterate thru each doc
             let exerciseID = doc.data().id;
+            let exerciseName;
+            await db.collection("users").doc(user.uid).collection("exercises").doc(exerciseID).get()
+              .then(exercise => {
+                exerciseName = exercise.data().name;
+                console.log("Exercise name: " + exerciseName);
+              });
             let rep1 = document.getElementById("exercise" + i + "set1");
             let rep2 = document.getElementById("exercise" + i + "set2");
             let rep3 = document.getElementById("exercise" + i + "set3");
@@ -50,6 +56,7 @@ function writeToHistory(collection) {
             console.log(rep3.value);
             exercisesRef.add({
               id: exerciseID,
+              name: exerciseName,
               set1: rep1.value,
               set2: rep2.value,
               set3: rep3.value,

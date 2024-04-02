@@ -53,36 +53,57 @@
     <nav id="navbarPlaceholder"></nav>
 
     <!-- the body of your page goes here -->
-    
+
     <div class="container">
         <div id="details-go-here"></div>
         <!-- Here is the container for cards with horizontal scrolling -->
         <div class="card-container">
             <div id="history-go-here" class="row row-cols-auto">
-                <template id="historyTemplate">
-                    <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-                        <div class="card-body">
-                        <p class="workout"></p>
-                        <p class="start_time"></p>
-                        <p class="end_time"></p>
-                        <p class="exercise1"></p>
-                        <p class="exercise1set1"></p>
-                        <p class="exercise1set2"></p>
-                        <p class="exercise1set3"></p>
-                        <p class="exercise2"></p>
-                        <p class="exercise2set1"></p>
-                        <p class="exercise2set2"></p>
-                        <p class="exercise2set3"></p>
-                        <p class="exercise3"></p>
-                        <p class="exercise3set1"></p>
-                        <p class="exercise3set2"></p>
-                        <p class="exercise3set3"></p>
-                    </div>
-                    </div>
-                </template>
+                
             </div>
         </div>
     </div>
+
+    <template id="historyTemplate">
+        <div class="card text-bg-secondary mb-3 py-2 mx-3" style="max-width: 90%;">
+            <div class="card-body">
+                <h4 class="workout_title">Workout Title</h4>
+                <p class="start_time"></p>
+                <p class="end_time"></p>
+                <div class="exercises" id="exercises-go-here">
+
+                </div>
+                <!-- <p class="workout"></p>
+                <p class="start_time"></p>
+                <p class="end_time"></p>
+                <p class="exercise1"></p>
+                <p class="exercise1set1"></p>
+                <p class="exercise1set2"></p>
+                <p class="exercise1set3"></p>
+                <p class="exercise2"></p>
+                <p class="exercise2set1"></p>
+                <p class="exercise2set2"></p>
+                <p class="exercise2set3"></p>
+                <p class="exercise3"></p>
+                <p class="exercise3set1"></p>
+                <p class="exercise3set2"></p>
+                <p class="exercise3set3"></p> -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Templates for general use, not displayed -->
+    <template id="exerciseTemplate">
+        <div style="width: 100%">
+            <div class="card-body">
+                <h5 class="exercise-title">Exercise Title</h5>
+                <p class="set1"></p>
+                <p class="set2"></p>
+                <p class="set3"></p>
+                <p class="weight"></p>
+            </div>
+        </div>
+    </template>
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
