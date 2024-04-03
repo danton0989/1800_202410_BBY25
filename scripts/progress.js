@@ -8,12 +8,15 @@ function displayChart(collection) {
       .then((allExercises) => {
         allExercises.forEach((exerciseDoc) => { 
             let exerciseID = exerciseDoc.id;
+            let name = exerciseDoc.data().name;
             document.getElementById(i).setAttribute("onclick", "window.location='./suggestion.html?docID=" + exerciseID + "'");
+            document.getElementById(i).innerHTML = name;
             i++;
         });
       });
   
     });
   }
-  
+
+
   displayChart("abc");
