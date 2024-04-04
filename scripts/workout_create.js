@@ -1,61 +1,55 @@
-// Display Exercise Card
+//------------------------------>
+//-- DISPLAY EXERCISE CARD
+//------------------------------>
 function displayExerciseCard() {
   firebase.auth().onAuthStateChanged(function (user) {
+    // Retrieve the HTML element with the ID "exerciseCardTemplate" and store it in the cardTemplate variable. 
+    let cardTemplate = document.getElementById("exerciseCardTemplate"); 
 
-    let exerciseCardTemplate = document.getElementById("exerciseCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
+    // Retrieve exercise template documents
+    db.collection("exercisesTemplates")
+      .get()
 
-    // db.collection("users").doc(user.uid).collection("workouts").get()
-    db.collection("exercisesTemplates").get()
       .then(allExercises => {
         allExercises.forEach(doc => {
-          // var workoutName = doc.data().name;
-          // var workout = doc.data();
-          var title = doc.data().name;       // get value of the "name" key
-          console.log(title);
-          // var details = doc.data().details;  // get value of the "details" key
-          var exerciseImage = doc.data().imageName;    //get unique ID to each hike to be used for fetching right image
-          // var hikeLength = doc.data().length; //gets the length field
           var docID = doc.id;
-          console.log(docID);
+          var title = doc.data().name;       // get value of the "name" key
+          var exerciseImage = doc.data().imageName;    //get unique ID to each hike to be used for fetching right image
+          // var details = doc.data().details;  // get value of the "details" key
+          // var hikeLength = doc.data().length; //gets the length field
           
-          let newcard = exerciseCardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
-
+          // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+          let newcard = cardTemplate.content.cloneNode(true); 
 
           console.log(doc.data());  //.data() returns data object
-          // console.log(workout.name);
 
-          //update title and text and image
-          newcard.querySelector('.exercise-title').innerHTML = title;
-          // newcard.querySelector('.card-length').innerHTML = hikeLength +"km";
-          // newcard.querySelector('.card-text').innerHTML = details;
-          newcard.querySelector('.exercise-image').src = `./images/${exerciseImage}.jpg`; //Example: NV01.jpg
+          // Update link?, title and image
           // newcard.querySelector('a').href = "workingOut.html?docID="+docID;
+          newcard.querySelector('.exercise-title').innerHTML = title;
+          newcard.querySelector('.exercise-image').src = `./images/${exerciseImage}.jpg`; //Example: NV01.jpg
+          // newcard.querySelector('.card-text').innerHTML = details;
+          // newcard.querySelector('.card-length').innerHTML = hikeLength +"km";
           
-
-          // document.getElementById("quote-goes-here").innerHTML = dayDoc.data().quote;  //using javascript to display the data on the right place
-          // document.getElementById("workoutName-goes-here").innerHTML = workout.name;  //using javascript to display the data on the right place
-          
-          //attach to gallery, Example: "hikes-go-here"
-          document.getElementById("exercises-go-here").appendChild(newcard);        });
+          // Attach to gallery, Example: "hikes-go-here"
+          document.getElementById("exercises-go-here").appendChild(newcard);
+        });
       });
-
   });
 }
-// calling the function
+// Calling the function
 // displayExerciseCard();
 
 
-// Write New Workout Name to db
+//------------------------------>
+//-- WRITE WORKOUT NAME TO DB
+//------------------------------>
 function createWorkout() {
   firebase.auth().onAuthStateChanged(function (user) {
-    // var user = firebase.auth().currentUser;
 
-  //name of the collection and documents should matach excatly with what you have in Firestore
+  // Location in Firebase to write data
   db.collection("users")
-    // .doc("HF36jrJMGkT5VSovUnuZlNb6it52")
     .doc(user.uid)
     .collection("workouts")
-    // .doc("WEYxpZPoNCvym1ig4cXL")
 
     .add({
       dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
@@ -75,25 +69,65 @@ function createWorkout() {
 
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
-      // window.location.assign("workout_favorite.html");       //re-direct to workout_favorite after creating a new workout
-      displayExerciseCard();
+      
+      // Page to redirect to after creating a new workout
+      // window.location.assign("workout_favorite.html");       
+      
+      // displayExerciseCard();
     })
 
     .catch(function (error) {
       console.error("Error adding document: ", error);
-    })
-    ;
-  // .onSnapshot(doc => {  //arrow notation
-  //   var workout = doc.data();
-
-  //   console.log(doc.data());  //.data() returns data object
-  //   console.log(workout.name);
-  //   // document.getElementById("quote-goes-here").innerHTML = dayDoc.data().quote;  //using javascript to display the data on the right place
-  //   document.getElementById("workoutName-goes-here").innerHTML = workout.name;  //using javascript to display the data on the right place
-});
+    });
+  });
 }
 // calling the function
 // createWorkout();
+
+
+//------------------------------>
+//-- ADD EXERCISES TO WORKOUT?
+//-- SAVE EXERCISE ID's?
+//------------------------------>
+var ExerciseList=[];
+
+function addExercise(exID){
+  firebase.auth().onAuthStateChanged(function (user) {
+
+    db.collection("exercisesTemplates")
+      .get()
+ 
+      .then(allExercises => {
+        allExercises.forEach(doc => {
+          // var workoutName = doc.data().name;
+          // var title = doc.data().name;       // get value of the "name" key
+          // console.log(title);
+          // var exerciseImage = doc.data().imageName;    //get unique ID to each hike to be used for fetching right image
+          // var details = doc.data().details;  // get value of the "details" key
+          // var hikeLength = doc.data().length; //gets the length field
+          var docID = doc.id;
+          console.log(docID);
+          
+          // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+          // let newcard = exerciseCardTemplate.content.cloneNode(true); 
+
+          // Update link, title and image
+          // newcard.querySelector('a').href = "workingOut.html?docID="+docID;
+          // newcard.querySelector('.exercise-title').innerHTML = title;
+          // newcard.querySelector('.exercise-image').src = `./images/${exerciseImage}.jpg`; //Example: NV01.jpg
+          // newcard.querySelector('.card-text').innerHTML = details;
+          // newcard.querySelector('.card-length').innerHTML = hikeLength +"km";
+          
+          // Attach to gallery, Example: "hikes-go-here"
+          // document.getElementById("exercises-go-here").appendChild(newcard);
+
+          console.log("inside addexercise, with ID: " + exID);
+          ExerciseList.push(docID);
+          console.log(ExerciseList);
+        });
+      });
+  });
+}
 
 
 // Add Exercise to Workout
@@ -112,7 +146,7 @@ function createWorkout() {
 //     button.addEventListener("click", event => {
 
 //         if(event.target.classList.contains("disabled")) {
-//           event.target.textContent += "boo";
+//           event.target.textContent = "boo";
 //         } else {
 //           event.target.classList.replace("enabled", "disabled");
 //         }
@@ -133,51 +167,29 @@ function createWorkout() {
   // });
 // }
 
-// Save Exercise ID's?
-var ExerciseList=[];
 
-function addExercise(exID){
-  firebase.auth().onAuthStateChanged(function (user) {
+//------------------------------>
+//-- BUTTON CLICK CHANGE COLOR
+//------------------------------>
+var button = document.getElementsByClassName("js-btnAddExercise");
 
-    db.collection("exercisesTemplates").get()
-    .then(allExercises => {
-      allExercises.forEach(doc => {
-        // var workoutName = doc.data().name;
-        // var workout = doc.data();
-        // var title = doc.data().name;       // get value of the "name" key
-        // console.log(title);
-        // var details = doc.data().details;  // get value of the "details" key
-        // var exerciseImage = doc.data().imageName;    //get unique ID to each hike to be used for fetching right image
-        // var hikeLength = doc.data().length; //gets the length field
-        var docID = doc.id;
-        console.log(docID);
-        
-        // let newcard = exerciseCardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+button.addEventListener("click", event => {
+  // button.classList.add("enabled");
 
+  // if (button.classList.contains("enabled")) {
+  //   button.textContent = "Not Added";
+  //   button.classList.add("disabled");
+  // } else {
+  //   button.textContent = "Added";
+  //   button.classList.remove("disabled");
+  // }
 
-        // console.log(doc.data());  //.data() returns data object
-        // console.log(workout.name);
+  event.target.classList.add("enabled");
 
-        //update title and text and image
-        // newcard.querySelector('.exercise-title').innerHTML = title;
-        // newcard.querySelector('.card-length').innerHTML = hikeLength +"km";
-        // newcard.querySelector('.card-text').innerHTML = details;
-        // newcard.querySelector('.exercise-image').src = `./images/${exerciseImage}.jpg`; //Example: NV01.jpg
-        // newcard.querySelector('a').href = "workingOut.html?docID="+docID;
-        
-
-        // document.getElementById("quote-goes-here").innerHTML = dayDoc.data().quote;  //using javascript to display the data on the right place
-        // document.getElementById("workoutName-goes-here").innerHTML = workout.name;  //using javascript to display the data on the right place
-        
-        //attach to gallery, Example: "hikes-go-here"
-        // document.getElementById("exercises-go-here").appendChild(newcard);
-        console.log("inside addexercise, with ID: " + exID);
-        ExerciseList.push(docID);
-        console.log(ExerciseList);
-      });
-
-    });
-
-  });
-}
+  if (event.target.classList.contains("enabled")) {
+    event.target.classList.replace("enabled", "disabled");
+  } else {
+    event.target.classList.replace("enabled", "disabled");
+  }
+});
 

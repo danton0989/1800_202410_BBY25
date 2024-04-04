@@ -120,11 +120,11 @@ a:hover {
 */
 
 .enabled {
-    background-color: #00241B;
+    background-color: green;
 }
 
 .disabled {
-    background-color: grey;
+    background-color: red;
     color: white;
 }
 
