@@ -8,11 +8,26 @@
     font-size: 2.25rem;
 }
 
-.navbar-light .navbar-brand .navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-brand .navbar-light .navbar-nav .nav-link .nav {
     color: #00241B; /* Dark green for brand name & nav links for visibility */
 }
 
 
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    padding-bottom: 140px;
+}
+
+.navbar {
+    justify-content: space-evenly;
+}
 /* 
 <!------------------------------>
 <!-- NAVIGATION TABS -->
@@ -21,7 +36,7 @@
 a {
     text-decoration: none;
 }
-  
+
 a:hover {
     text-decoration: none;
     color: red;

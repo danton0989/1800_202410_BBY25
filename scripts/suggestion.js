@@ -3,7 +3,8 @@ function displayChart(collection) {
     let params = new URL(window.location.href); //get URL of search bar
     let ID = params.searchParams.get("docID"); //get value for key "id"
     var exerciseHistory = db.collection("users").doc(user.uid).collection("history")
-    var exerciseChart = [];
+    var weightChart = [];
+    var repChart = [];
     await exerciseHistory
       .orderBy("start_time")
       .get()
@@ -21,29 +22,55 @@ function displayChart(collection) {
                   var set2 = exerciseDoc.data().set2;
                   var set3 = exerciseDoc.data().set3;
                   var weight = exerciseDoc.data().weight;
-                  exerciseChart.push({
+                  var set = parseInt(set1, 10) + parseInt(set2, 10) + parseInt(set3, 10); 
+
+                  weightChart.push({
                     label: end_time,
                     data: weight,
                   });
+                  repChart.push({
+                    label: end_time,
+                    data: set,
+                  });                  
                 }
               });
-              var ctx = document.getElementById("myChart").getContext("2d");
+              var ctxWeight = document.getElementById("wChart").getContext("2d");
+
+              var configWeight = {
+                type: "line",
+                data: {
+                  labels: weightChart.map((data) => data.label),
+                  datasets: [
+                    {
+                      label: "weights",
+                      borderColor: "rgb(75,192,192)",
+                      data: weightChart.map((data) => data.data),
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,  
+                },
+              };
+              var myChartWeight = new Chart(ctxWeight, configWeight);
+
+              var ctx = document.getElementById("rChart").getContext("2d");
 
               var config = {
                 type: 'line',
                 data: {
-                  labels: exerciseChart.map(data => data.label),
+                  labels: repChart.map(data => data.label),
                   datasets: [{
-                    label: "exercise",
+                    label: "reps",
                     borderColor: "rgb(75,192,192)",
-                    data: exerciseChart.map(data => data.data),
+                    data: repChart.map(data => data.data),
                   }],
                 },
-                option: {
+                options: {
                   responsive: true,
                 },
               };
-              var myChar = new Chart(ctx, config);
+              var myChartRep = new Chart(ctx, config);
 
             });
         });
