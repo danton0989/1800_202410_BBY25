@@ -18,7 +18,20 @@ function loadSkeleton() {
             // No user is signed in.
             console.log($('#navbarPlaceholder').load('./text/nav_before_login.html'));
         }
-        console.log($('#footerPlaceholder').load('./text/footer.html'));
+        if (user) {
+          //if the pointer to "user" object is not null, then someone is logged in
+          // User is signed in.
+          // Do something for the user here.
+            let elem = document.querySelector("#navbarPlaceholder");
+        if (elem.childNodes.length == 0) {
+            console.log($('#footerPlaceholder').load('./text/footer.html'));
+        } else {
+            console.log($("#footerPlaceholder").load("./text/footer_before.html"));
+        }
+        } else {
+          // No user is signed in.
+        console.log($("#footerPlaceholder").load("./text/footer_before.html"));
+        }
     });
 }
 loadSkeleton(); //invoke the function
