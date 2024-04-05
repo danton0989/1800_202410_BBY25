@@ -12,6 +12,13 @@
     color: #00241B; /* Dark green for brand name & nav links for visibility */
 }
 
+.heading {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 
 .footer {
     position: fixed;
@@ -61,6 +68,7 @@ a:hover {
 */
 .card {
     width: 80% !important;
+    position: static;
 }
 
 .card > img {
