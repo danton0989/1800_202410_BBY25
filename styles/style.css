@@ -13,7 +13,6 @@
 }
 
 
-
 .footer {
     position: fixed;
     width: 100%;
@@ -61,8 +60,7 @@ a:hover {
 <!------------------------------>
 */
 .card {
-    width: 400px !important;
-    max-width: 400px !important;
+    width: 80% !important;
 }
 
 .card > img {
