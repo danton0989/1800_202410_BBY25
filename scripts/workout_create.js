@@ -58,15 +58,6 @@ function createWorkout() {
       name: document.getElementById("formNewWorkoutName").value
     })
 
-    // .set(
-    //   // { name: document.getElementById("formNewWorkoutName").value }, 
-    //   { 
-    //     name: "Tuesday Workout",
-    //     favorite: true
-    //   }
-    //   // ,{ merge: true}
-    //   )
-
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
       
@@ -128,44 +119,6 @@ function addExercise(exID){
       });
   });
 }
-
-
-// Add Exercise to Workout
-// function addExercise() {
-//   let btnAddExercise = document.querySelectorAll(".js-btnAddExercise");
-
-//   btnAddExercise.forEach(button => {
-//     button.classList.add("enabled");
-//   });
-
-//   // btnAddExercise.forEach(button => {
-//   //   button.classList.remove("enabled");
-//   // });
-
-//   btnAddExercise.forEach(button => {
-//     button.addEventListener("click", event => {
-
-//         if(event.target.classList.contains("disabled")) {
-//           event.target.textContent = "boo";
-//         } else {
-//           event.target.classList.replace("enabled", "disabled");
-//         }
-      
-//     });
-//   });
-
-  
-  // btnAddExercise.classList.add("enabled");
-
-  // btnAddExercise.addEventListener("click", event => {
-  //   if (event.target.classList.contains("disabled")) {
-  //     event.target.classList.replace("enabled", "disabled");
-  //   } else {
-  //     event.target.classList.replace("enabled", "disabled");
-  //   }
-
-  // });
-// }
 
 
 //------------------------------>
