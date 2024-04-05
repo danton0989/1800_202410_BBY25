@@ -8,8 +8,9 @@
     font-size: 2.25rem;
 }
 
-.navbar-light .navbar-brand .navbar-light .navbar-nav .nav-link {
-    color: #00241B; /* Dark green for brand name & nav links for visibility */
+.navbar .navbar-brand .navbar-light .navbar-nav {
+    /* Dark green for brand name & nav links for visibility */
+    color: #00241B;     
 }
 
 
@@ -45,13 +46,13 @@ a:hover {
 <!-- WORKOUT CARDS -->
 <!------------------------------>
 */
-.card {
-    width: 400px !important;
+.workout-card {
+    /* width: 400px !important; */
     max-width: 400px !important;
 }
 
 .card > img {
-    height: 150px;
+    height: 250px;
 }
 
 .card-body {
@@ -67,7 +68,7 @@ a:hover {
 
 .workout-image {
     width: 100%;
-    height: 150px;
+    height: 300px;
 }
 
 /*
@@ -113,11 +114,6 @@ a:hover {
     /* width: 400px !important; */
     /* max-width: 400px !important; */
 }
-/*
-.form-control {
-    width: 90%;
-}
-*/
 
 .enabled {
     background-color: green;
@@ -130,11 +126,11 @@ a:hover {
 
 /* 
 <!------------------------------>
-<!-- Modal -->
+<!-- MODAL -->
 <!------------------------------> 
 */
 .modal {
-    background-color: lightblue;
+    background-color: #ffc107;
     opacity: 0;
     position: fixed;
     top: 0;

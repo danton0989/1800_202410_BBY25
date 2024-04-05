@@ -71,7 +71,7 @@ function createWorkout() {
       console.log("Document written with ID: ", docRef.id);
       
       // Page to redirect to after creating a new workout
-      // window.location.assign("workout_favorite.html");       
+      window.location.assign("workout_favorite.html");       
       
       // displayExerciseCard();
     })
