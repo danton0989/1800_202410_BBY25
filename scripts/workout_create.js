@@ -54,7 +54,7 @@ function createWorkout() {
     .add({
       dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
       favorite: false,
-      imageName: "elmo",
+      imageName: "gym",
       name: document.getElementById("formNewWorkoutName").value
     })
 

@@ -27,7 +27,7 @@ var uiConfig = {
                 writeWorkouts(user)
                     .then(function () {
                         console.log("New user added to firestore");
-                        window.location.assign("homepage.html");       //re-direct to main.html after signup
+                        window.location.assign("workout_favorite.html");       //re-direct to main.html after signup
                     });
                 //db.collection("users").doc(user.uid).collection("history").doc('initial').set({         //write to firestore. We are using the UID for the ID in users collection
                 //    start_time: firebase.firestore.FieldValue.serverTimestamp(),
@@ -123,6 +123,7 @@ function writeWorkouts(u) {
     workoutsRef.doc("initial").set({
         name: "Monday Workout",
         category: "Full Workout",
+        imageName: "gym",
     });
     var workout = db.collection("users").doc(u.uid).collection("workouts").doc("initial");
     var workoutExercises = workout.collection("exercises");
