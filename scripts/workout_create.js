@@ -15,8 +15,6 @@ function displayExerciseCard() {
           var docID = doc.id;
           var title = doc.data().name;       // get value of the "name" key
           var exerciseImage = doc.data().imageName;    //get unique ID to each hike to be used for fetching right image
-          // var details = doc.data().details;  // get value of the "details" key
-          // var hikeLength = doc.data().length; //gets the length field
           
           // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
           let newcard = cardTemplate.content.cloneNode(true); 
@@ -24,11 +22,8 @@ function displayExerciseCard() {
           console.log(doc.data());  //.data() returns data object
 
           // Update link?, title and image
-          // newcard.querySelector('a').href = "workingOut.html?docID="+docID;
           newcard.querySelector('.exercise-title').innerHTML = title;
           newcard.querySelector('.exercise-image').src = `./images/${exerciseImage}.jpg`; //Example: NV01.jpg
-          // newcard.querySelector('.card-text').innerHTML = details;
-          // newcard.querySelector('.card-length').innerHTML = hikeLength +"km";
           
           // Attach to gallery, Example: "hikes-go-here"
           document.getElementById("exercises-go-here").appendChild(newcard);
@@ -127,15 +122,6 @@ function addExercise(exID){
 var button = document.getElementsByClassName("js-btnAddExercise");
 
 button.addEventListener("click", event => {
-  // button.classList.add("enabled");
-
-  // if (button.classList.contains("enabled")) {
-  //   button.textContent = "Not Added";
-  //   button.classList.add("disabled");
-  // } else {
-  //   button.textContent = "Added";
-  //   button.classList.remove("disabled");
-  // }
 
   event.target.classList.add("enabled");
 

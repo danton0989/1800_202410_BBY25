@@ -180,3 +180,18 @@ a:hover {
     width: 80%;
     text-align: center;
 }
+
+/* 
+<!------------------------------>
+<!-- BOOTSTRAP OVERRIDES ->
+<!------------------------------> 
+*/
+.btn-success {
+    background-color: rgb(00,32,91);
+    color: white;
+}
+
+.bg-info {
+    background-color: rgb(00,32,91) !important;
+    color: white;
+}
