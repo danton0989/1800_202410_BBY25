@@ -14,22 +14,24 @@
     color: white;
 }
 
-.navbar-brand > img:hover {
-    filter: brightness(0) invert(1);
-    color: red;
-}
-
 .navbar .navbar-brand .navbar-light .navbar-nav {
     /* Dark green for brand name & nav links for visibility */
     color: #00241B;     
 }
 
-.nav-link {
+.nav-foot {
     filter: brightness(0) invert(1);
     color: white;
     width: 88px;
     text-align: center;
+    font-size: 11pt;
 }
+
+.nav-item-foot {
+    width: 88px;
+    height: 60px;
+    text-align: center;
+} 
 
 .heading {
     overflow: hidden;
@@ -55,8 +57,8 @@
 }
 
 .icon2 {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 }
 
 /* 
@@ -211,6 +213,5 @@ a:hover {
 <!------------------------------> 
 */
 .btn-success {
-    background-color: #;
     color: white;
 }
