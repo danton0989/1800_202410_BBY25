@@ -125,43 +125,43 @@ function writeWorkouts(u) {
       workoutsRef.add({
         name: "Monday Workout",
         category: "Full Workout",
-        imageName: "gym",
+        imageName: "gym0",
         order: 6
       }),
       workoutsRef.add({
         name: "Tuesday Workout",
         category: "Full Workout",
-        imageName: "gym2",
+        imageName: "gym1",
         order: 5
       }),
       workoutsRef.add({
         name: "Wednesday Workout",
         category: "Full Workout",
-        imageName: "gym3",
+        imageName: "gym2",
         order: 4
       }),
       workoutsRef.add({
         name: "Thursday Workout",
         category: "Full Workout",
-        imageName: "gym4",
+        imageName: "gym3",
         order: 3
       }),
       workoutsRef.add({
         name: "Friday Workout",
         category: "Full Workout",
-        imageName: "gym5",
+        imageName: "gym4",
         order: 2
       }),
       workoutsRef.add({
         name: "Saturday Workout",
         category: "Full Workout",
-        imageName: "gym6",
+        imageName: "gym5",
         order: 1
       }),
       workoutsRef.add({
         name: "Sunday Workout",
         category: "Full Workout",
-        imageName: "gym7",
+        imageName: "gym6",
         order: 0
       }),
     ]).then((results) => {

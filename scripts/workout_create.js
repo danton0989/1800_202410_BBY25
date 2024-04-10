@@ -11,12 +11,13 @@ function createWorkout() {
         return data;
       });
       db.collection("users").doc(user.uid).update({'workouts': (data + 1)});
+      var imageNum = length % 7;
       var docRef = db.collection("users").doc(user.uid).collection("workouts");
       docRef
         .add({
           dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
           favorite: false,
-          imageName: "gym",
+          imageName: "gym" + imageNum,
           name: document.getElementById("formNewWorkoutName").value,
           order: length
         })
