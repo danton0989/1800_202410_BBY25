@@ -50,7 +50,6 @@ function createWorkout() {
 var button = document.querySelector(".js-btnAddExercise");
 button.addEventListener("click", (event) => {
   event.target.classList.toggle("enabled");
-
   createWorkout()
     .then(() => {
       console.log("Workout created successfully");

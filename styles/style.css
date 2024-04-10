@@ -1,16 +1,44 @@
 /*
 <!------------------------------>
+<!-- BODY -->
+<!------------------------------>
+*/
+
+body {
+    background: rgb(42 42 42);
+    color: #FFF
+}
+h1 {
+    color: #FFF;
+}
+
+
+
+
+.display-4 {
+    font-weight: 500;
+}
+
+
+/*
+<!------------------------------>
 <!-- NAVBAR -->
 <!------------------------------>
 */
+
+#colour {
+    --bs-bg-opacity: 1;
+    background-color: rgb(30 30 95);
+}
+
 .navbar-brand {
     font-family: "Protest Guerrilla", sans-serif; /*change the font name for what you have*/
     font-size: 2.25rem;
 }
 
-.navbar .navbar-brand .navbar-light .navbar-nav {
+.navbar .navbar-brand {
     /* Dark green for brand name & nav links for visibility */
-    color: #00241B;     
+    color: #FFF;     
 }
 
 .heading {
@@ -35,6 +63,9 @@
 .navbar {
     justify-content: space-evenly;
 }
+
+
+
 /* 
 <!------------------------------>
 <!-- NAVIGATION TABS -->
@@ -42,13 +73,33 @@
 */
 a {
     text-decoration: none;
+    color: #FFF;
 }
 
 a:hover {
     text-decoration: none;
-    color: red;
+    color: #a3cef1;
 }
 
+/*
+<!------------------------------>
+<!-- Button -->
+<!------------------------------>
+*/
+.btn {
+    color: #070707;
+}
+
+.btn-success {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #a3cef1;
+    --bs-btn-border-color: #a3cef1;
+    --bs-btn-hover-bg: #27526f;
+    --bs-btn-hover-border-color: #a3cef1;
+    --bs-btn-active-bg: #27526f;
+    --bs-btn-active-border-color: #a3cef1;
+
+}
 
 /*
 <!------------------------------>
@@ -84,6 +135,7 @@ a:hover {
 .card-body {
     /* margin: 0; */
     padding: 0;
+    color: #000;
 }
 
 .card-title {
@@ -96,6 +148,11 @@ a:hover {
     width: 100%;
     height: 300px;
 }
+
+.text-bg-secondary {
+    background-color: #a3cef1 !important; 
+}
+
 
 /*
 <!------------------------------>
@@ -129,6 +186,7 @@ a:hover {
     width: 100%;
     height: 150px;
 }
+
 
 /*
 <!------------------------------>
