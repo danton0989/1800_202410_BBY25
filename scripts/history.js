@@ -1,11 +1,13 @@
-//------------------------------------------------------------------------------
-// Input parameter is a string representing the collection we are reading from
-//------------------------------------------------------------------------------
+// variable helps to keep count of how many documents of histroy must be populated and which exercises to have appened
 var j = 0;
+// variable helps to keep count of the amount of sections must be populated with exercises and which history it will be appended to
 var a = 0;
 
+//------------------------------------------------------------------------------
+// Input parameter is a string representing the collection we are reading from ('history')
+//------------------------------------------------------------------------------
 function displayHistoryDynamically(collection) {
-  firebase.auth().onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => { // Authtenticate user sign in, and pass in the current user
     if (user) {
       currentUser = db.collection("users").doc(user.uid);
       var historyTemplate = document.getElementById("historyTemplate"); // Retrieve the HTML element with the ID "historyTemplate" and store it in the cardTemplate variable.
@@ -14,7 +16,6 @@ function displayHistoryDynamically(collection) {
       //var history = db.collection("users").doc(user.uid).collection("history").doc("testHistory").collection("exercises");
 
       var history = db.collection("users").doc(user.uid).collection("history");
-      let i = 0;
       history
         .orderBy("start_time")
         .get()
@@ -30,9 +31,7 @@ function displayHistoryDynamically(collection) {
             historyCard.querySelector(".start_time").innerHTML = await `Start Time: ${start_time}`;
             historyCard.querySelector(".end_time").innerHTML = await `End Time: ${end_time}`;
             historyCard.querySelector('.exercises').setAttribute("id", "exercises-go-here" + a);
-            /* await document
-              .getElementById(collection + "-go-here")
-              .appendChild(historyCard); */
+
             appendingHistory(historyCard, function () {
               testFunction(history, doc, user, function () {
                 increment();
