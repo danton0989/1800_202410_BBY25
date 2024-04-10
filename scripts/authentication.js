@@ -97,7 +97,7 @@ function writeExercises(u) {
         counter: 0
     });
     exercisesRef.add({
-        name: "Squat",
+        name: "Overhead Press",
         category: "Legs",
         details: "A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up. During the descent, the hip and knee joints flex while the ankle joint dorsiflexes; conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up.",
         prevSet1: 0,
@@ -107,7 +107,7 @@ function writeExercises(u) {
         counter: 0
     });
     exercisesRef.add({
-        name: "Running",
+        name: "Weightlift",
         category: "Cardio",
         details: "Running is the action of rapidly propelling yourself forward on foot. When running, there is a moment when both feet are off the ground (as opposed to walking, when one foot is always on the ground), making it a high-impact exercise.",
         prevSet1: 0,
@@ -119,21 +119,77 @@ function writeExercises(u) {
 }
 
 function writeWorkouts(u) {
-    var workoutsRef = db.collection("users").doc(u.uid).collection("workouts");
-    workoutsRef.doc("initial").set({
-        name: "Monday Workout",
-        category: "Full Workout",
-    });
-    var workout = db.collection("users").doc(u.uid).collection("workouts").doc("initial");
-    var workoutExercises = workout.collection("exercises");
-    db.collection("users").doc(u.uid).collection("exercises").get()
-        .then(allExercises => {
-            //var i = 1;  //Optional
-            allExercises.forEach(doc => { //iterate thru each doc
-                let field = doc.id;
-                workoutExercises.add({
-                    id: field,
-                });
-            });
-        });
+  var workoutsRef = db.collection("users").doc(u.uid).collection("workouts");
+   Promise.all([
+     workoutsRef.add({
+       name: "Monday Workout",
+       category: "Full Workout",
+       imageName: "gym",
+     }),
+     workoutsRef.add({
+       name: "Tuesday Workout",
+       category: "Full Workout",
+       imageName: "gym2",
+     }),
+     workoutsRef.add({
+       name: "Wednesday Workout",
+       category: "Full Workout",
+       imageName: "gym3",
+     }),
+     workoutsRef.add({
+       name: "Thursday Workout",
+       category: "Full Workout",
+       imageName: "gym4",
+     }),
+     workoutsRef.add({
+       name: "Friday Workout",
+       category: "Full Workout",
+       imageName: "gym5",
+     }),
+     workoutsRef.add({
+       name: "Saturday Workout",
+       category: "Full Workout",
+       imageName: "gym6",
+     }),
+     workoutsRef.add({
+       name: "Sunday Workout",
+       category: "Full Workout",
+       imageName: "gym7",
+     }),
+   ]).then((results) => {
+     const mondayDocRef = results[0];
+     const tuesdayDocRef = results[1];
+     const wednesdayDocRef = results[2];
+     const thursdayDocRef = results[3];
+     const fridayDocRef = results[4];
+     const saturdayDocRef = results[5];
+     const sundayDocRef = results[6];
+     console.log("Monday workout ID: ", mondayDocRef.id);
+     console.log("Tuesday workout ID: ", tuesdayDocRef.id);
+     console.log("Wednesday workout ID: ", wednesdayDocRef.id);
+     console.log("Thursday workout ID: ", thursdayDocRef.id);
+     console.log("Friday workout ID: ", fridayDocRef.id);
+     console.log("Saturday workout ID: ", saturdayDocRef.id);
+     console.log("Sunday workout ID: ", sundayDocRef.id);
+     db.collection("users")
+       .doc(u.uid)
+       .collection("exercises")
+       .get()
+       .then((allExercises) => {
+         //var i = 1;  //Optional
+         allExercises.forEach(doc => {
+           //iterate thru each doc
+           const docData = {
+             id: doc.id,
+           };
+            mondayDocRef.collection("exercises").add(docData);
+            tuesdayDocRef.collection("exercises").add(docData);
+            wednesdayDocRef.collection("exercises").add(docData);
+            thursdayDocRef.collection("exercises").add(docData);
+            fridayDocRef.collection("exercises").add(docData);
+            saturdayDocRef.collection("exercises").add(docData);
+            sundayDocRef.collection("exercises").add(docData);
+         });
+       });
+   });
 }
