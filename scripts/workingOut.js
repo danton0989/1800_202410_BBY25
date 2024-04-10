@@ -1,36 +1,37 @@
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
+// Function displays all the exercises that is in the current started workout
 //------------------------------------------------------------------------------
 function displayExercisesDynamically(collection) {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => { // Authtenticate user sign in, and pass in the current user
         let params = new URL(window.location.href); //get URL of search bar
         let ID = params.searchParams.get("docID"); //get value for key "id"
-
-        let cardTemplate = document.getElementById("exerciseCardTemplate"); // Retrieve the HTML element with the ID "exerciseCardTemplate" and store it in the cardTemplate variable. 
-
+        // Retrieve the HTML element with the ID "exerciseCardTemplate" and store it in the cardTemplate variable. 
+        let cardTemplate = document.getElementById("exerciseCardTemplate"); 
+        // Grabs name of current workout and displays on webpage
         db.collection("users").doc(user.uid).collection("workouts").doc(ID).get()
             .then(doc => {
                 // populate title for workout
                 workoutName = doc.data().name;
                 document.getElementById("workoutName").innerHTML = workoutName;
             })
-
-        // dynamically displays all the exercises
+        /* reads all the exercises of the current workout from the database, and dynamically displays them
+        with user inputs for each exercise */
         db.collection("users").doc(user.uid).collection("workouts").doc(ID).collection(collection).get()
             .then(allExercises => {
-                var i = 1;
+                var i = 1; // count each exercise ran through
                 allExercises.forEach(doc => { //iterate thru each doc
                     var title;
                     db.collection("users").doc(user.uid).collection(collection).doc(doc.data().id).get()
                         .then(exercise => {
                             title = exercise.data().name;
+                            // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+                            let newcard = cardTemplate.content.cloneNode(true); 
 
-                            let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
-
-                            //update title and text and image
+                            // update title and text and image
                             newcard.querySelector('.card-title').innerHTML = title;
 
-                            //Optional: give unique ids to all elements for future use
+                            // give unique ids to all elements for future use
                             newcard.querySelector('.set1label').setAttribute("for", "exercise" + i + "set1");
                             newcard.querySelector('.set1').setAttribute("id", "exercise" + i + "set1");
                             newcard.querySelector('.set2label').setAttribute("for", "exercise" + i + "set2");
@@ -42,6 +43,7 @@ function displayExercisesDynamically(collection) {
                             //attach to gallery, "exercises-go-here"
                             document.getElementById(collection + "-go-here").appendChild(newcard);
 
+                            // increase count for each exercise
                             i++;
                         })
 
@@ -52,7 +54,4 @@ function displayExercisesDynamically(collection) {
 
 displayExercisesDynamically("exercises");  //input param is the name of the collection
 
-function workoutDone() {
-    location.replace("./workout_favorite.html");
-}
 

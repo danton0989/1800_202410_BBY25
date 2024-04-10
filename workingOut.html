@@ -50,10 +50,13 @@
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
+    <nav id="navbarPlaceholder" class="heading"></nav>
 
     <!-- the body of your page goes here -->
-
+    <br>
+    <br>
+    <br>
+    <br>
     <form class="container" id="forum" onsubmit="return writeToHistory('exercises')">
         <h1 id="workoutName">Workout</h1>
         <p id="timer"></p>
@@ -62,9 +65,11 @@
 
             </div>
         </div>
-        <button type="button" class="btn btn-success btn-lg px-4 gap-3" onclick="writeToHistory('exercises')">Finish</button>
+        <button type="button" class="btn btn-success btn-lg px-4 gap-3" onclick="writeToHistory()">Finish</button>
     </form>
     
+    <!-- Pops up upon workout compeletion to congrajulate and confimr finalization of the workout, 
+    continue takes users to homepage -->
     <div class="modal" id="modal">
         <div class="modal-inner">
             <h1>Good Job!</h1>
@@ -76,7 +81,6 @@
     <!-- Templates for general use, not displayed -->
     <template id="exerciseCardTemplate">
         <div class="card py-2 mx-2" style="width: 100%">
-            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <label for="set1" class="set1label">Set 1 Reps:</label>
@@ -91,9 +95,12 @@
             </div>
         </div>
     </template>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <!-- our own footer goes here-->
-    <nav id="footerPlaceholder"></nav>
+    <nav id="footerPlaceholder" class="footer"></nav>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
