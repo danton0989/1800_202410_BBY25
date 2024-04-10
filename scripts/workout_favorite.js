@@ -10,6 +10,7 @@ function displayWorkoutCard() {
     db.collection("users")
       .doc(user.uid)
       .collection("workouts")
+      .orderBy("order", "desc")
       .get()
       
       .then(allWorkouts => {

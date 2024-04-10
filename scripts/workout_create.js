@@ -2,15 +2,24 @@
 //-- WRITE WORKOUT NAME TO DB
 //------------------------------
 function createWorkout() {
+  
   return new Promise((resolve, reject) => {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(async function (user) {
+      var data;
+      var length = await db.collection("users").doc(user.uid).get().then(doc => {
+        data = doc.data().workouts;
+        return data;
+      });
+      db.collection("users").doc(user.uid).update({'workouts': (data + 1)});
+      var imageNum = length % 7;
       var docRef = db.collection("users").doc(user.uid).collection("workouts");
       docRef
         .add({
           dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
           favorite: false,
-          imageName: "gym",
+          imageName: "gym" + imageNum,
           name: document.getElementById("formNewWorkoutName").value,
+          order: length
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
