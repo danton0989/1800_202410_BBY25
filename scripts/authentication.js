@@ -27,7 +27,7 @@ var uiConfig = {
                 writeWorkouts(user)
                     .then(function () {
                         console.log("New user added to firestore");
-                        window.location.assign("homepage.html");       //re-direct to main.html after signup
+                        window.location.assign("workout_favorite.html");       //re-direct to main.html after signup
                     });
                 //db.collection("users").doc(user.uid).collection("history").doc('initial').set({         //write to firestore. We are using the UID for the ID in users collection
                 //    start_time: firebase.firestore.FieldValue.serverTimestamp(),
@@ -119,69 +119,69 @@ function writeExercises(u) {
 }
 
 function writeWorkouts(u) {
-  var workoutsRef = db.collection("users").doc(u.uid).collection("workouts");
-   Promise.all([
-     workoutsRef.add({
-       name: "Monday Workout",
-       category: "Full Workout",
-       imageName: "gym",
-     }),
-     workoutsRef.add({
-       name: "Tuesday Workout",
-       category: "Full Workout",
-       imageName: "gym2",
-     }),
-     workoutsRef.add({
-       name: "Wednesday Workout",
-       category: "Full Workout",
-       imageName: "gym3",
-     }),
-     workoutsRef.add({
-       name: "Thursday Workout",
-       category: "Full Workout",
-       imageName: "gym4",
-     }),
-     workoutsRef.add({
-       name: "Friday Workout",
-       category: "Full Workout",
-       imageName: "gym5",
-     }),
-     workoutsRef.add({
-       name: "Saturday Workout",
-       category: "Full Workout",
-       imageName: "gym6",
-     }),
-     workoutsRef.add({
-       name: "Sunday Workout",
-       category: "Full Workout",
-       imageName: "gym7",
-     }),
-   ]).then((results) => {
-     const mondayDocRef = results[0];
-     const tuesdayDocRef = results[1];
-     const wednesdayDocRef = results[2];
-     const thursdayDocRef = results[3];
-     const fridayDocRef = results[4];
-     const saturdayDocRef = results[5];
-     const sundayDocRef = results[6];
-     console.log("Monday workout ID: ", mondayDocRef.id);
-     console.log("Tuesday workout ID: ", tuesdayDocRef.id);
-     console.log("Wednesday workout ID: ", wednesdayDocRef.id);
-     console.log("Thursday workout ID: ", thursdayDocRef.id);
-     console.log("Friday workout ID: ", fridayDocRef.id);
-     console.log("Saturday workout ID: ", saturdayDocRef.id);
-     console.log("Sunday workout ID: ", sundayDocRef.id);
-     db.collection("users")
-       .doc(u.uid)
-       .collection("exercises")
-       .get()
-       .then((allExercises) => {
-         //var i = 1;  //Optional
-         allExercises.forEach(doc => {
-           //iterate thru each doc
-           const docData = {
-             id: doc.id,
-           };
+    var workoutsRef = db.collection("users").doc(u.uid).collection("workouts");
+    Promise.all([
+      workoutsRef.add({
+        name: "Monday Workout",
+        category: "Full Workout",
+        imageName: "gym",
+      }),
+      workoutsRef.add({
+        name: "Tuesday Workout",
+        category: "Full Workout",
+        imageName: "gym2",
+      }),
+      workoutsRef.add({
+        name: "Wednesday Workout",
+        category: "Full Workout",
+        imageName: "gym3",
+      }),
+      workoutsRef.add({
+        name: "Thursday Workout",
+        category: "Full Workout",
+        imageName: "gym4",
+      }),
+      workoutsRef.add({
+        name: "Friday Workout",
+        category: "Full Workout",
+        imageName: "gym5",
+      }),
+      workoutsRef.add({
+        name: "Saturday Workout",
+        category: "Full Workout",
+        imageName: "gym6",
+      }),
+      workoutsRef.add({
+        name: "Sunday Workout",
+        category: "Full Workout",
+        imageName: "gym7",
+      }),
+    ]).then((results) => {
+      const mondayDocRef = results[0];
+      const tuesdayDocRef = results[1];
+      const wednesdayDocRef = results[2];
+      const thursdayDocRef = results[3];
+      const fridayDocRef = results[4];
+      const saturdayDocRef = results[5];
+      const sundayDocRef = results[6];
+      console.log("Monday workout ID: ", mondayDocRef.id);
+      console.log("Tuesday workout ID: ", tuesdayDocRef.id);
+      console.log("Wednesday workout ID: ", wednesdayDocRef.id);
+      console.log("Thursday workout ID: ", thursdayDocRef.id);
+      console.log("Friday workout ID: ", fridayDocRef.id);
+      console.log("Saturday workout ID: ", saturdayDocRef.id);
+      console.log("Sunday workout ID: ", sundayDocRef.id);
+      db.collection("users")
+        .doc(u.uid)
+        .collection("exercises")
+        .get()
+        .then((allExercises) => {
+          //var i = 1;  //Optional
+          allExercises.forEach((doc) => {
+            //iterate thru each doc
+            const docData = {
+              id: doc.id,
+            };
             mondayDocRef.collection("exercises").add(docData);
             tuesdayDocRef.collection("exercises").add(docData);
             wednesdayDocRef.collection("exercises").add(docData);
@@ -189,7 +189,8 @@ function writeWorkouts(u) {
             fridayDocRef.collection("exercises").add(docData);
             saturdayDocRef.collection("exercises").add(docData);
             sundayDocRef.collection("exercises").add(docData);
-         });
-       });
-   });
+          });
+        });
+    });
+
 }
