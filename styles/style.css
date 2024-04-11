@@ -114,7 +114,7 @@ a:hover {
 }
 
 .btn-success {
-    --bs-btn-color: #fff;
+    --bs-btn-color: black;
     --bs-btn-bg: #a3cef1;
     --bs-btn-border-color: #a3cef1;
     --bs-btn-hover-bg: #27526f;
