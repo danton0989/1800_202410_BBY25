@@ -1,8 +1,8 @@
 //------------------------------
 //-- WRITE WORKOUT NAME TO DB
 //------------------------------
+//creating a workout
 function createWorkout() {
-
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged(async function (user) {
       // display modal to show user has finished workout

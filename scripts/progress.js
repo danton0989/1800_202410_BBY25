@@ -1,3 +1,4 @@
+//When the user click on to each button on the progress page they will be directed to the suggestion page with each exercise's graphs showing
 function displayChart(collection) {
     firebase.auth().onAuthStateChanged((user) => {
       var exercises = db.collection("users").doc(user.uid).collection("exercises")

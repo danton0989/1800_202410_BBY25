@@ -28,11 +28,9 @@ var uiConfig = {
                 writeWorkouts(user)
                     .then(function () {
                         console.log("New user added to firestore");
-                        window.location.assign("workout_favorite.html");       //re-direct to main.html after signup
+                        window.location.assign("workout_favorite.html");       //re-direct to workout_favorite.html after signup
                     });
-                //db.collection("users").doc(user.uid).collection("history").doc('initial').set({         //write to firestore. We are using the UID for the ID in users collection
-                //    start_time: firebase.firestore.FieldValue.serverTimestamp(),
-                //})
+
             } else {
                 return true;
             }
@@ -48,13 +46,8 @@ var uiConfig = {
     signInFlow: 'popup',
     signInSuccessUrl: "workout_favorite.html",
     signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        //User will sign in through email
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        // firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
     tosUrl: '<your-tos-url>',
@@ -64,6 +57,7 @@ var uiConfig = {
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
+//Writing the exercise template to firebase
 function writeExercises(u) {
     //define a variable for the collection you want to create in Firestore to populate data
     var exercisesRef = db.collection("users").doc(u.uid).collection("exercises");
@@ -119,6 +113,7 @@ function writeExercises(u) {
     });
 }
 
+//Writing the default workouts to firebase
 function writeWorkouts(u) {
     var workoutsRef = db.collection("users").doc(u.uid).collection("workouts");
     Promise.all([

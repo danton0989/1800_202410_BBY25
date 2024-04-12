@@ -6,14 +6,13 @@ var a = 0;
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from ('history')
 //------------------------------------------------------------------------------
+//Displaying a history card
 function displayHistoryDynamically(collection) {
   firebase.auth().onAuthStateChanged((user) => { // Authtenticate user sign in, and pass in the current user
     if (user) {
       currentUser = db.collection("users").doc(user.uid);
       var historyTemplate = document.getElementById("historyTemplate"); // Retrieve the HTML element with the ID "historyTemplate" and store it in the cardTemplate variable.
       var exerciseTemplate = document.getElementById("exerciseTemplate"); // Retrieve the HTML element with the ID "exerciseTemplate" and store it in the cardTemplate variable.
-      //define a variable for the collection you want to create in Firestore to populate data
-      //var history = db.collection("users").doc(user.uid).collection("history").doc("testHistory").collection("exercises");
 
       var history = db.collection("users").doc(user.uid).collection("history");
       history
@@ -68,6 +67,7 @@ async function appendingHistory(h, callback) {
   callback();
 }
 
+//Displaying exercises on the history card
 async function testFunction(h, doc, user, callback) {
   let exerciseList = h.doc(doc.id).collection("exercises");
   await exerciseList.get()
@@ -88,7 +88,6 @@ async function testFunction(h, doc, user, callback) {
         exerciseCard.querySelector(".weight").innerHTML = `Weight: ${weight}`;
 
         appending(exerciseCard, j);
-        //document.getElementById("exercises-go-here" + i).appendChild(exerciseCard);
       });
     });
   callback();
